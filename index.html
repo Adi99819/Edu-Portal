@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPortal</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="logo">EduPortal</div>
+<div class="nav-right">
+    <button id="loginBtn" class="auth-btn" onclick="toggleAuthModal()">Login</button>
+    <button id="registerBtn" class="auth-btn register-btn" onclick="toggleAuthModal('register')">Register</button>
+    <span id="userWelcome" class="user-welcome" style="display:none;"></span>
+    <input type="text" id="search" oninput="render()" placeholder="Search courses...">
+    <button onclick="toggleNotifications()" id="notifBtn" class="notif-btn">🔔</button>
+    <button onclick="toggleDark()" id="themeBtn">🌙</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Next Gen Learning Dashboard</h1>
+  <p>Track • Learn • Compete</p>
+</section>
+
+<section class="filters">
+  <select id="category" onchange="render()">
+    <option>All</option>
+    <option>Web</option>
+    <option>AI</option>
+  </select>
+  <select id="difficulty" onchange="render()">
+    <option>All</option>
+    <option>Beginner</option>
+    <option>Intermediate</option>
+    <option>Advanced</option>
+  </select>
+</section>
+
+<section class="grid" id="courses"></section>
+
+<section class="panel">
+  <h2>Dashboard</h2>
+  <div id="dashboard"></div>
+</section>
+
+<section class="panel">
+  <h2>Quiz</h2>
+  <div id="quiz"></div>
+</section>
+
+<section class="panel">
+  <h2>Leaderboard</h2>
+  <ul id="leaderboard"></ul>
+</section>
+
+<section class="panel">
+  <h2>Feedback</h2>
+  <input id="email" placeholder="Email">
+  <textarea id="msg" placeholder="Message"></textarea>
+  <button onclick="submitFeedback()">Send</button>
+</section>
+
+<!-- Course Details Modal -->
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- Notifications Dropdown -->
+<div id="notificationsPanel" class="notifications-panel">
+  <div class="notif-header">
+    <h4>Notifications</h4>
+    <span onclick="toggleNotifications()" class="close-notif">&times;</span>
+  </div>
+  <div id="notif-list"></div>
+</div>
+
+<!-- Auth Modal -->
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAuthModal()">&times;</span>
+    <h2 id="authTitle">Login</h2>
+    <form id="authForm">
+      <input type="text" id="authUsername" placeholder="Username" required>
+      <input type="email" id="authEmail" placeholder="Email" style="display:none;" required>
+      <input type="password" id="authPassword" placeholder="Password" required>
+      <button type="submit" id="authSubmit">Login</button>
+    </form>
+    <p id="authToggle">Don't have account? <span onclick="switchToRegister()">Register</span></p>
+    <p id="registerToggle" style="display:none;">Have account? <span onclick="switchToLogin()">Login</span></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
